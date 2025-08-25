@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up - Local Business Directory</title>
+
+    <!-- Static CSS files -->
+    <link rel="stylesheet" href="{% static 'style4.css' %}" />
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>Create an Account</h1>
+            <p>Join us and discover the best local businesses!</p>
+
+            <!-- ✅ REMOVE action and method for AJAX to work properly -->
+            <form id="signupForm">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label for="username">Full Name</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your full name" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required />
+                </div>
+
+                <button type="submit" class="btn">Sign Up</button>
+
+                <p class="signup-text">
+                    Already have an account?
+                    <a href="{% url 'index3' %}">Log In</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ✅ Make sure this JS sends JSON and handles CSRF -->
+    <script src="{% static 'script4.js' %}" defer></script>
+</body>
+</html>

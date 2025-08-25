@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Business Directory 🏢📍</title>
+
+    <!-- Link to the static CSS file -->
+    <link rel="stylesheet" href="{% static 'welcomepage.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Welcome to the Local Business Directory 👋🏽🏪</h1>
+        <p>Discover the best local businesses near you 🔍✨</p>
+        <div class="header-btns">
+            <!-- Use named URL patterns -->
+            <a href="{% url 'index' %}" class="btn">Explore Businesses 🧭</a>
+            <a href="{% url 'index3' %}" class="btn">Login to add your business ➕🏢</a>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="intro">
+        <div class="intro-text">
+            <h2>Find local businesses quickly and easily ⚡️📌</h2>
+            <p>Search, filter, and connect with local services and products in your area. Whether you're looking for food 🍔, fitness 🏋️, or fashion 👗, we've got it all!</p>
+            <a href="{% url 'index' %}" class="btn">Start Searching 🔎</a>
+        </div>
+        <div class="intro-image">
+            <img src="{% static 'lbd.png' %}" alt="Local Businesses">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose Our Directory? 🤔💡</h2>
+        <div class="features-container">
+            <div class="feature-item">
+                <h3>Wide Range of Businesses 🌐🏬</h3>
+                <p>From restaurants to fitness centers, find a wide variety of local businesses in one place.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Easy to Use 👍🖥️</h3>
+                <p>Our platform is user-friendly and easy to navigate. Search and filter businesses with ease!</p>
+            </div>
+            <div class="feature-item">
+                <h3>Support Local 🤝🏘️</h3>
+                <p>Support your community by discovering and supporting small, local businesses.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Local Business Directory | All rights reserved 📜</p>
+        </div>
+    </footer>
+
+    <!-- Link to the static JavaScript file -->
+    <script src="{% static 'welcomepage.js' %}?v=1.0"></script>
+</body>
+</html>

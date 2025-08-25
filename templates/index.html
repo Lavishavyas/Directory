@@ -1,0 +1,356 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Business Directory</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'chatbot.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ✅ Success Message Popup -->
+    {% if messages %}
+    <div id="popup-message" style="position: fixed; top: 20px; right: 20px; background-color: #4BB543; color: white; padding: 10px 20px; border-radius: 5px; z-index: 9999;">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(() => {
+            const popup = document.getElementById('popup-message');
+            if (popup) popup.style.display = 'none';
+        }, 3000);
+    </script>
+    {% endif %}
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Local Business Directory</h1>
+        <div style="text-align: right; padding: 0 20px;">
+            {% if request.user.is_authenticated %}
+                <span>Welcome, {{ request.user.username }} | <a href="/logout/">Logout</a></span>
+            {% else %}
+                <a href="/index3/">Login</a> | <a href="/index4/">Signup</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" placeholder="Search businesses" class="search-input" id="searchInput">
+        <button class="search-button" id="searchButton">Search</button>
+    </div>
+
+    <!-- Business Cards -->
+    <div class="business-list">
+        <div class="business-card">
+            <h2>Cafe Kono</h2>
+            <p>Behind City Vibes, Indore</p>
+            <p>Contact: xxxxxxxx</p>
+            <a href="https://www.zomato.com/indore/cafe-kono-sapna-sangeeta" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐</div>
+        </div>
+
+        
+        <div class="business-card">
+            <h2>Dutt Gurukripa Restaurant</h2>
+            <p>No 8, A-1, Nath Mandir Rd, near Nath Mandir, South Tukoganj, Indore, Madhya Pradesh 452001</p>
+            <p>Contact: 099267 88888</p>
+            <a href="https://www.zomato.com/indore/dutt-guru-kripa-south-tukoganj" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐</div>
+        </div>
+
+        <div class="business-card">
+            <h2>Shree Chotiwala Restaurant</h2>
+            <p>Ronak Plaza, 8 B, Nath Mandir Rd, opposite Nath Mandir, South Tukoganj, Indore, Madhya Pradesh 452001</p>
+            <p>Contact: 0731 252 8586</p>
+            <a href="https://www.swiggy.com/city/indore/shree-chotiwala-restaurant-south-tukoganj-rest161891" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐</div>
+        </div>
+
+         
+        <div class="business-card">
+            <h2>Namo Sandwich</h2>
+            <p>610, Opp. Sudama Dwar, Usha Nagar, Indore, Madhya Pradesh 452009</p>
+            <p>Contact: 089827 97129</p>
+            <a href="https://namosandwich.com/" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐</div>
+        </div>
+
+        <div class="business-card">
+            <h2>Yuvi Sandwich</h2>
+            <p>Vikram Tower, Indore</p>
+            <p>Contact: xxxxxxxx</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>RK Chinese</h2>
+            <p>Street No. 2, Sindhi Colony, Indore</p>
+            <p>Website not available</p>
+            <div class="ratings">⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Chanchal Stitching</h2>
+            <p>Swagat Apartment, Bhagwandeen Nagar, Indore</p>
+            <p>Contact: xxxxxxxx</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Bambaiya Chai</h2>
+            <p>Near Gulmohar Complex, Sapna Sangeeta Road, Indore</p>
+            <p>Contact: xxxxxxxx</p>
+            <p>Website not available</p>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Wow Momo 🥟</h2>
+            <p>Near Agarwal Sweets, Sapna Sangeeta Road, Indore</p>
+            <p>Contact: xxxxxxxx</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>New Agrawal Sweets</h2>
+            <p>Near Tower Square, Sapna Sangeeta Road, Indore</p>
+            <p>Contact: 91964 437896</p>
+            <a href="https://www.zomato.com/indore/new-agrawal-sweets-sapna-sangeeta" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>A2Z Fitness</h2>
+            <p>36, Sneh Nagar, Near Tower Square, Sapna Sangeeta Road, Indore</p>
+            <p>Contact: 096444 44661</p>
+            <a href="https://www.instagram.com/a2z_fitness2021/?hl=en" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Rajwada Handicrafts</h2>
+            <p>Shop No. 18, Rajwada Palace Road, Near Sarafa Market, Indore</p>
+            <p>Contact: Currently, Not Available</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Rangrez by Sakshi Jain</h2>
+            <p>22/3 Kanchanbagh, Near Crown Palace, South Tukoganj, Indore</p>
+            <p>Contact: 73140 84129</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Rangrez By Nicky</h2>
+            <p>16/1, South Tukoganj, Indore</p>
+            <p>Contact: 96850 92740</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Rangrez Sarees</h2>
+            <p>22/3, Kanchanbag, Near Hotel Crown Palace, Indore</p>
+            <p>Contact: 731 2512XXX</p>
+            <a href="https://www.textileinfomedia.com/rangrez-sarees" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Apna Sweets</h2>
+            <p>Multiple branches across Indore.</p>
+            <p>Contact: Multiple contact numbers</p>
+            <a href="https://apnasweets.com/" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="business-card">
+            <h2>Joshi Dahi Bada House</h2>
+            <p>24, Bada Sarafa, Sarafa Bazar, Indore</p>
+            <p>Contact: Currently, not available</p>
+            <a href="#">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+
+                <div class="business-card">
+            <h2>Vijay Chaat House (Chappan Dukan)</h2>
+            <p>Chappan Dukan, New Palasia, Indore</p>
+            <p>Contact: 098937 43015</p>
+            <a href="http://vijaychaathouse.in" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+
+                <div class="business-card">
+            <h2>Karnavati Dabeli & PavBhaji</h2>
+            <p>C60, Anand Nagar, Samvad Nagar, Indore, Madhya Pradesh 452001</p>
+            <p>Contact: Not Available</p>
+            <a href="#" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+                <div class="business-card">
+            <h2>Veg Bites Cafe & Restaurant</h2>
+            <p> 9/47, Mittal Chambers, Sapna Sangeeta Rd, near Sapna Sangeeta Lumiere, Snehnagar, Indore, Madhya Pradesh 452001</p>
+            <p>Contact: 0731 351 4341</p>
+            <a href="https://www.swiggy.com/restaurants/veg-bites-snehnagar-vijay-nagar-indore-688037/dineout?is_retargeting=true&media_source=GoogleReserve&utm_campaign=GoogleMap&utm_source=GoogleReserve" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+
+         <div class="business-card">
+            <h2>Shree Vikas Rabdi Wala</h2>
+            <p>Sukhnivas Rd, Opposite Ranjit Hanuman Mandir, Usha Nagar Extension, Usha Nagar, Sudama Nagar, Indore, Madhya Pradesh 452009</p>
+            <p>Contact: 094250 63318</p>
+            <a href="https://www.swiggy.com/city/indore/shree-vikas-rabdiwala-usha-nagar-sudama-nagar-rest841354" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+
+         <div class="business-card">
+            <h2>Shoes Villa (Shoe Laundry In Indore)</h2>
+            <p>front of Lotus Showroom, 91, Sapna Sangeeta Rd, Old Agarwal Nagar, Indore, Madhya Pradesh 452001</p>
+            <p>Contact: 097559 01111</p>
+            <a href="#" target="_blank" rel="noopener">Visit Website : Not Available</a>
+            <div class="ratings">Not Available</div>
+        </div>
+
+         <div class="business-card">
+            <h2>M K Momos</h2>
+            <p>Ranjeet Hanuman Road, Narendra Tiwari Marg, Indore, Madhya Pradesh 452009</p>
+            <p>Contact: 073899 51979</p>
+            <a href="#" target="_blank" rel="noopener">Visit Website : Not Available</a>
+            <div class="ratings">⭐⭐⭐⭐</div>
+        </div>
+
+         <div class="business-card">
+            <h2>Bhanwarilal Mithaiwala Indore</h2>
+            <p>Shop No. 2, MANAS MAYFAIR, opp. Naath Mandir, South Tukoganj, Indore, Madhya Pradesh 452001</p>
+            <p>Contact: 099819 93213</p>
+            <a href="https://www.bhanwarilalmithaiwala.in/" target="_blank" rel="noopener">Visit Website</a>
+            <div class="ratings">⭐⭐⭐⭐⭐</div>
+        </div>
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>Local Business Directory</h3>
+                <p>Discover and support local businesses near you.</p>
+            </div>
+            <div class="footer-middle">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Request Form -->
+        <div style="margin-top: 40px;">
+            {% if request.user.is_authenticated %}
+                <h3>Or, Send a Request to Add Your Business</h3>
+                <form method="POST" action="/submit-business-request/" id="loggedInBusinessRequestForm">
+                    {% csrf_token %}
+                    <input type="text" name="guest_business" placeholder="Business Name" required>
+                    <input type="text" name="guest_address" placeholder="Business Address" required>
+                    <input type="text" name="guest_contact" placeholder="Business Contact" required>
+                    <input type="url" name="guest_website" placeholder="Website (optional)">
+                    <button type="submit">Send Request</button>
+                </form>
+            {% else %}
+                <p style="color: red;">Please <a href="/index3/">login</a> to add a business.</p>
+            {% endif %}
+        </div>
+
+        <!-- Chatbot Integration -->
+        <button id="chatbot-btn">Chat with Us</button>
+        <div id="chatbot-window">
+            <div id="chatbot-header">
+                <h3>Chatbot</h3>
+                <button id="close-btn">×</button>
+            </div>
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Type your message...">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Local Business Directory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'chatbot.js' %}"></script>
+
+
+{% comment %}  this is a comment {% endcomment %}
+
+    <canvas id="particle-canvas"></canvas>
+
+
+<script>
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    for (let i = 0; i < 3; i++) {
+      particles.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: Math.random() * 4 + 1,
+        opacity: 1,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2,
+      });
+    }
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+      p.x += p.dx;
+      p.y += p.dy;
+      p.opacity -= 0.02;
+
+      if (p.opacity <= 0) {
+        particles.splice(i, 1);
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,0,0,${p.opacity})`; // black particles
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
