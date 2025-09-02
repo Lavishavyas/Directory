@@ -28,7 +28,7 @@ def submit_business_request(request):
 # ----------- Template Views (Render HTML Pages) -----------
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'welcomepage.html')
 
 def logout_view(request):
     logout(request)
